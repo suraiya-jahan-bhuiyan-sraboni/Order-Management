@@ -4,12 +4,14 @@ import axios from "axios";
 import { Link } from 'react-router'
 
 const Dashboard = () => {
-    const [orders, setOrders] = useState([]);
+    const [orders, setOrders] = useState(null);
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/allorders`).then(res => setOrders(res.data));
     }, []);
 
     //console.log(orders)
+    if (!orders) return <p className="text-center mt-20  text-green-800">Loading...</p>;
+    if (orders.length==0) return <p className="text-center mt-20 text-green-800">No Order data found!<br/>Create New Order!</p>;
     return (
         <div className=''>
             <h2 className="text-2xl font-bold my-4">All Orders</h2>

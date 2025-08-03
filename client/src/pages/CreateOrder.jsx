@@ -11,7 +11,7 @@ import { UploadCloud } from 'lucide-react';
 const CreateOrder = () => {
 
   const { register, handleSubmit, reset,
-    formState: { errors },setValue } = useForm();
+    formState: { errors }, setValue } = useForm();
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
 
@@ -20,10 +20,10 @@ const CreateOrder = () => {
 
   const onSubmit = async (data) => {
     setUploading(true);
+    
     const file = data.invoice[0];
     if (file.type !== "application/pdf") {
-      toast.error("Please upload a valid PDF file.");
-      setUploading(false);
+      toast.error("Please upload a valid PDF file");
       return;
     }
     const formData = new FormData();
@@ -70,7 +70,7 @@ const CreateOrder = () => {
     setDragActive(false);
     const file = e.dataTransfer.files[0];
     if (file && file.type === "application/pdf") {
-      setValue("invoice", file);
+      setValue("invoice", [file], { shouldValidate: true });
       setFileName(file.name);
     }
   };

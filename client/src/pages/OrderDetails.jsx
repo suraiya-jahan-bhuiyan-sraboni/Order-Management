@@ -6,7 +6,7 @@ import { FileDown, UserCircle, CalendarCheck, ReceiptText } from "lucide-react";
 
 const OrderDetails = () => {
   const { id } = useParams();
-  const [order, setOrder] = useState({});
+  const [order, setOrder] = useState(null);
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API_URL}/order/${id}`).then(res => setOrder(res.data));
@@ -17,7 +17,7 @@ const OrderDetails = () => {
     "/upload/fl_attachment/"
   );
 
-  if (!order) return <p className="text-center mt-20">Loading...</p>;
+  if (!order) return <p className="text-center mt-20  text-green-800">Loading...</p>;
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-2xl rounded-2xl mt-8 space-y-6">

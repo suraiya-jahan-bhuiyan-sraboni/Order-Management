@@ -43,7 +43,7 @@ async function run() {
           res.status(500).json({ message: "Failed to create order" });
         }
       } catch (error) {
-        console.error("Error creating order:", error);
+       // console.error("Error creating order:", error);
         res.status(500).json({ message: "Server error", error: error.message });
       }
 
